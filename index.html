@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lincoln Adura – Automation & Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #00b4d8;
+      --blue2: #0096c7;
+      --dark: #020408;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(0,180,216,0.2);
+      --text: #e6edf3;
+      --muted: #7a8a99;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* STARS CANVAS */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(2,4,8,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-lincoln {
+  background: linear-gradient(90deg, #f4d03f, #f39c12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 8px rgba(244,208,63,0.5));
+}
+
+.logo-adura {
+  color: var(--blue);
+  filter: drop-shadow(0 0 8px rgba(0,180,216,0.5));
+}
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav ul a:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 140px 20px 80px;
+    }
+
+    .hero-tag {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding: 8px 20px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(0,180,216,0.05);
+      animation: fadeDown 1s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      max-width: 800px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      animation: fadeDown 1s 0.2s ease both;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--blue), #48cae4, var(--blue));
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% }
+      100% { background-position: 200% }
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.9;
+      margin-bottom: 44px;
+      animation: fadeDown 1s 0.4s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 80px;
+      animation: fadeDown 1s 0.6s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .stats {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-top: 1px solid var(--border);
+      padding-top: 50px;
+      animation: fadeDown 1s 0.8s ease both;
+    }
+
+    .stat h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.2rem;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .stat p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 14px 34px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      display: inline-block;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #48cae4;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0,180,216,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 0 20px rgba(0,180,216,0.15);
+    }
+
+    /* SECTION SHARED */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'Orbitron', monospace;
+      color: var(--blue);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 56px;
+      line-height: 1.8;
+    }
+
+    /* GLASS CARD */
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.4s;
+    }
+
+    .glass:hover {
+      border-color: var(--blue);
+      background: rgba(0,180,216,0.06);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,180,216,0.15);
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      padding: 36px 28px;
+      max-width: 260px;
+      text-align: left;
+    }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* FLOATING SKILLS */
+    .skills {
+      padding: 100px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .skills-orbit {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      height: 420px;
+      margin: 0 auto;
+    }
+
+    .skill-float {
+      position: absolute;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      animation: float linear infinite;
+      cursor: default;
+      transition: all 0.3s;
+    }
+
+    .skill-float:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      box-shadow: 0 0 20px rgba(0,180,216,0.3);
+      transform: scale(1.1);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* PROJECTS */
+    .projects {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .projects-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      padding: 36px 30px;
+      max-width: 330px;
+      text-align: left;
+    }
+
+    .project-number {
+      font-family: 'Orbitron', monospace;
+      color: var(--blue);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .project-tag {
+      background: rgba(0,180,216,0.08);
+      color: var(--blue);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(0,180,216,0.2);
+    }
+
+    .project-link {
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+
+    /* ARTICLES */
+    .articles {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .articles-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .article-card {
+      padding: 32px 28px;
+      max-width: 330px;
+      text-align: left;
+    }
+
+    .article-category {
+      font-family: 'Orbitron', monospace;
+      background: rgba(0,180,216,0.08);
+      color: var(--blue);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-block;
+      border: 1px solid rgba(0,180,216,0.2);
+    }
+
+    .article-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .article-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .article-meta {
+      font-size: 0.78rem;
+      color: rgba(0,180,216,0.5);
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 1px;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 60px 50px;
+    }
+
+    .contact h2 { margin-bottom: 16px; }
+
+    .contact p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', monospace;
+    }
+
+    /* GLOW LINE */
+    .glow-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      margin: 16px auto 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPACE BACKGROUND -->
+  <canvas id="stars"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo"><span class="logo-lincoln">LINCOLN</span> <span class="logo-adura">ADURA</span></div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">🌍 Africa-Based Developer · Open to Work</div>
+    <h1>Building <span>Automation Systems</span> & Web Solutions That Work While You Sleep</h1>
+    <p>Hi, I'm LincolnAdura — I help businesses and e-commerce stores eliminate manual work, save hours every week, and grow faster with smart automation and clean web development.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="https://lincolnadura.netlify.app/#contact" target="_blank" class="btn btn-secondary">Hire Me</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><h3>3+</h3><p>Projects Built</p></div>
+      <div class="stat"><h3>5+</h3><p>Tools Mastered</p></div>
+      <div class="stat"><h3>1yr+</h3><p>Experience</p></div>
+      <div class="stat"><h3>100%</h3><p>Committed</p></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="section-label">What I Do</div>
+    <div class="section-title">Services I Offer</div>
+    <div class="glow-line"></div>
+    <p class="section-sub" style="margin-top:24px">Every service is built to save you time, reduce manual work, and grow your business.</p>
+    <div class="services-grid">
+      <div class="service-card glass">
+        <div class="service-icon">🤖</div>
+        <h3>Business Automation</h3>
+        <p>Automate repetitive tasks using Python, n8n, Zapier, and Make. Stop doing manually what a machine can do for you.</p>
+      </div>
+      <div class="service-card glass">
+        <div class="service-icon">🌐</div>
+        <h3>Web Development</h3>
+        <p>Clean, fast, professional websites that represent your brand and turn visitors into real customers.</p>
+      </div>
+      <div class="service-card glass">
+        <div class="service-icon">📊</div>
+        <h3>Automated Reporting</h3>
+        <p>Scheduled email reports that pull your business data and deliver insights automatically — zero manual work.</p>
+      </div>
+      <div class="service-card glass">
+        <div class="service-icon">🔗</div>
+        <h3>API Integrations</h3>
+        <p>Connect your tools so they talk to each other automatically. No copy-pasting. No manual syncing. Just flow.</p>
+      </div>
+      <div class="service-card glass">
+        <div class="service-icon">🧾</div>
+        <h3>Invoice Automation</h3>
+        <p>Generate and send professional PDF invoices to clients automatically with a single command.</p>
+      </div>
+      <div class="service-card glass">
+        <div class="service-icon">🛒</div>
+        <h3>E-commerce Solutions</h3>
+        <p>Custom automation and web tools built for e-commerce stores to manage orders, reports, and customers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING SKILLS -->
+  <section id="skills" class="skills">
+    <div class="section-label">Tech Stack</div>
+    <div class="section-title">Skills & Tools</div>
+    <div class="glow-line"></div>
+    <p class="section-sub" style="margin-top:24px">The tools I use to build real solutions for real businesses.</p>
+    <div class="skills-orbit" id="skillsOrbit"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title">Projects I've Built</div>
+    <div class="glow-line"></div>
+    <p class="section-sub" style="margin-top:24px">Real automation systems and web solutions built from scratch.</p>
+    <div class="projects-grid">
+      <div class="project-card glass">
+        <div class="project-number">PROJECT · 01</div>
+        <h3>Automated Business Report Sender</h3>
+        <p>Reads sales data from Google Sheets, calculates key metrics, builds a branded HTML email report, and sends it automatically via Gmail.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Google Sheets API</span>
+          <span class="project-tag">Gmail SMTP</span>
+        </div>
+        <a href="https://github.com/Fiercexontan/auto-business-reporter" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-card glass">
+        <div class="project-number">PROJECT · 02</div>
+        <h3>Business Landing Page with Contact Automation</h3>
+        <p>A professional business website with a fully automated contact form. Every submission delivers an instant email notification to the business owner.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML/CSS/JS</span>
+          <span class="project-tag">Formspree</span>
+          <span class="project-tag">Netlify</span>
+        </div>
+        <a href="https://lincolnadura.netlify.app" target="_blank" class="project-link">View Live Site →</a>
+      </div>
+      <div class="project-card glass">
+        <div class="project-number">PROJECT · 03</div>
+        <h3>Automated PDF Invoice Generator</h3>
+        <p>Automatically generates a professional branded PDF invoice and emails it directly to the client — all with a single command. No manual work required.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">PDF Generation</span>
+          <span class="project-tag">Gmail SMTP</span>
+        </div>
+        <a href="https://github.com/Fiercexontan/auto-invoice-generator" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section id="articles" class="articles">
+    <div class="section-label">Knowledge</div>
+    <div class="section-title">Articles & Insights</div>
+    <div class="glow-line"></div>
+    <p class="section-sub" style="margin-top:24px">Thoughts on automation, web development, and building smarter businesses.</p>
+    <div class="articles-grid">
+      <div class="article-card glass">
+        <span class="article-category">Automation</span>
+        <h3>5 Repetitive Tasks Every Business Should Automate Right Now</h3>
+        <p>Most small business owners waste hours every week on tasks that Python or Zapier could handle in seconds. Here are the five most common ones.</p>
+        <div class="article-meta">// COMING SOON</div>
+      </div>
+      <div class="article-card glass">
+        <span class="article-category">Python</span>
+        <h3>How I Built an Automated Report System That Saves 5 Hours a Week</h3>
+        <p>A step-by-step breakdown of how I connected Google Sheets to Gmail using Python to send automatic business reports on schedule.</p>
+        <div class="article-meta">// COMING SOON</div>
+      </div>
+      <div class="article-card glass">
+        <span class="article-category">Web Dev</span>
+        <h3>Why Every Business Needs a Website With an Automated Contact Form</h3>
+        <p>A website without automation is just a digital brochure. Here is how one simple automation turns it into a lead generation machine.</p>
+        <div class="article-meta">// COMING SOON</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="contact-box glass">
+      <div class="section-label">Let's Talk</div>
+      <div class="section-title">Got a Project in Mind? 👋</div>
+      <div class="glow-line"></div>
+      <p style="margin-top:24px">Whether you need a website, an automation system, or just want to explore what's possible — I'd love to hear from you. I always reply within 24 hours.</p>
+      <div class="contact-links">
+        <a href="https://lincolnadura.netlify.app/#contact" target="_blank" class="btn btn-primary">Send Me a Message</a>
+        <a href="https://www.linkedin.com/in/lincoln-adura" target="_blank" class="btn btn-secondary">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 · LINCOLN ADURA · AUTOMATION & WEB DEVELOPER · AFRICA 🌍</p>
+  </footer>
+
+  <script>
+    // ── STARS BACKGROUND ──────────────────────────────────────
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < 220; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.5,
+          alpha: Math.random(),
+          speed: Math.random() * 0.003 + 0.001
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.alpha += s.speed;
+        if (s.alpha > 1 || s.alpha < 0) s.speed *= -1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,180,216,${s.alpha * 0.6})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    createStars();
+    drawStars();
+    window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
+
+    // ── FLOATING SKILLS ───────────────────────────────────────
+    const skills = [
+      'Python', 'JavaScript', 'HTML & CSS', 'n8n', 'Zapier',
+      'Make', 'Google Sheets API', 'Gmail SMTP', 'REST APIs',
+      'GitHub', 'Netlify', 'Airtable', 'PDF Generation',
+      'Web Scraping', 'Formspree', 'VS Code'
+    ];
+
+    const orbit = document.getElementById('skillsOrbit');
+    const positions = [
+      {left:'5%', top:'10%'}, {left:'25%', top:'0%'}, {left:'50%', top:'5%'},
+      {left:'72%', top:'0%'}, {left:'88%', top:'12%'}, {left:'92%', top:'35%'},
+      {left:'80%', top:'58%'}, {left:'60%', top:'72%'}, {left:'38%', top:'78%'},
+      {left:'18%', top:'70%'}, {left:'2%', top:'55%'}, {left:'0%', top:'30%'},
+      {left:'35%', top:'35%'}, {left:'58%', top:'38%'}, {left:'20%', top:'38%'},
+      {left:'45%', top:'55%'}
+    ];
+
+    skills.forEach((skill, i) => {
+      const el = document.createElement('div');
+      el.className = 'skill-float';
+      el.textContent = skill;
+      el.style.left = positions[i].left;
+      el.style.top = positions[i].top;
+      el.style.animationDuration = (3 + Math.random() * 4) + 's';
+      el.style.animationDelay = (Math.random() * 3) + 's';
+      orbit.appendChild(el);
+    });
+  </script>
+</body>
+</html>
