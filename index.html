@@ -57,7 +57,7 @@
       transition: all 0.15s ease;
     }
 
-    /* BACKGROUND MESH */
+    /* BACKGROUND — automation network */
     .bg-mesh {
       position: fixed;
       inset: 0;
@@ -66,32 +66,41 @@
       pointer-events: none;
     }
 
+    #network-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
     .mesh-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.18;
+      filter: blur(140px);
+      opacity: 0.1;
     }
 
     .blob-1 {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, #6366f1, transparent);
+      background: radial-gradient(circle, #63b3ed, transparent);
       top: -200px; left: -100px;
-      animation: driftA 18s ease-in-out infinite alternate;
+      animation: driftA 22s ease-in-out infinite alternate;
     }
 
     .blob-2 {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, #0ea5e9, transparent);
+      background: radial-gradient(circle, #f6c90e, transparent);
       top: 30%; right: -150px;
-      animation: driftB 22s ease-in-out infinite alternate;
+      animation: driftB 26s ease-in-out infinite alternate;
     }
 
     .blob-3 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, #8b5cf6, transparent);
+      background: radial-gradient(circle, #4fd1c5, transparent);
       bottom: 10%; left: 20%;
-      animation: driftC 16s ease-in-out infinite alternate;
+      animation: driftC 19s ease-in-out infinite alternate;
     }
 
     @keyframes driftA {
@@ -203,9 +212,20 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 130px 24px 80px;
+      padding: 150px 24px 80px;
     }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: 1.05fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1140px;
+      width: 100%;
+      margin-bottom: 64px;
+    }
+
+    .hero-text { text-align: left; }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -237,10 +257,9 @@
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-size: clamp(2.4rem, 4.6vw, 4.2rem);
       font-weight: 800;
-      line-height: 1.1;
-      max-width: 820px;
+      line-height: 1.12;
       margin-bottom: 24px;
       letter-spacing: -1px;
       animation: fadeUp 0.8s 0.15s ease both;
@@ -258,7 +277,7 @@
     .hero-desc {
       font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 560px;
+      max-width: 520px;
       line-height: 1.85;
       margin-bottom: 44px;
       font-weight: 300;
@@ -269,8 +288,6 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 80px;
       animation: fadeUp 0.8s 0.45s ease both;
     }
 
@@ -324,6 +341,89 @@
       transform: translateY(-2px);
     }
 
+    /* HERO PORTRAIT */
+    .hero-portrait {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
+      padding: 3px;
+      background: linear-gradient(150deg, var(--gold), var(--blue) 55%, var(--purple));
+      box-shadow: 0 30px 70px rgba(0,0,0,0.45), 0 0 60px rgba(99,179,237,0.12);
+    }
+
+    .portrait-frame::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border: 1px solid rgba(246,201,14,0.18);
+      border-radius: 30px;
+      pointer-events: none;
+    }
+
+    .portrait-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .portrait-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .portrait-quote-mark {
+      position: absolute;
+      top: -26px;
+      left: -18px;
+      font-family: 'Syne', sans-serif;
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--gold);
+      opacity: 0.9;
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(246,201,14,0.35);
+      z-index: 2;
+      user-select: none;
+    }
+
+    .portrait-caption {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .portrait-caption .quote-line {
+      font-family: 'Syne', sans-serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--blue-bright);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin-bottom: 4px;
+    }
+
+    .portrait-caption .quote-name {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
     /* STATS */
     .hero-stats {
       display: flex;
@@ -361,6 +461,19 @@
       font-weight: 400;
       letter-spacing: 0.3px;
     }
+
+     /* ── CREDENTIAL STRIP ────────────────────── */
+    .credential-strip {
+      position:relative; z-index:1; padding:16px 40px;
+      display:flex; justify-content:center; align-items:center; gap:36px; flex-wrap:wrap;
+      background:rgba(255,255,255,0.02);
+      border-top:1px solid rgba(255,255,255,0.06);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    }
+    .credential-item { display:flex; align-items:center; gap:10px; font-size:0.8rem; color:var(--text-dim); font-weight:500; letter-spacing:0.3px; }
+    .credential-item strong { color:var(--text-muted); font-weight:600; }
+    .cred-dot { width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.7; }
 
     /* SECTION HEADER */
     .sec-header {
@@ -782,6 +895,25 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: rgba(99,179,237,0.2); border-radius: 10px; }
+
+    /* RESPONSIVE HERO */
+    @media (max-width: 860px) {
+      .hero-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+      .hero-text { text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-portrait { order: -1; }
+      .portrait-frame { max-width: 240px; }
+      .portrait-quote-mark { font-size: 3.6rem; top: -18px; left: -10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
@@ -791,6 +923,7 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- BACKGROUND -->
+  <canvas id="network-bg"></canvas>
   <div class="bg-mesh">
     <div class="mesh-blob blob-1"></div>
     <div class="mesh-blob blob-2"></div>
@@ -816,41 +949,69 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-dot"></span>
-      Africa-Based Developer · Open to Work
-    </div>
-    <h1>
-      <span class="line-1">Automation. Web. Bots.</span>
-      <span class="line-2">Built to Scale Your Business.</span>
-    </h1>
-    <p class="hero-desc">
-      Hi, I'm LincolnAdura - I design and build automation systems, web solutions, and intelligent bots for businesses and organisations that want to operate smarter and scale faster. I specialize in Automation, Web Development, and Bot Development — and I take on any project that falls within or connects to these disciplines. If you have something in mind, let's talk.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">View My Work →</a>
-      <a href="https://lincolnadura.netlify.app/#contact" target="_blank" class="btn-outline">Get in Touch</a>
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Full-Stack Engineer | Web, Automation & Bot Specialist | Remote Worldwide (GMT+1 Friendly)
+        </div>
+        <h1>
+          <span class="line-1">Automation. Web. Bots.</span>
+          <span class="line-2">Built to Scale Your Business.</span>
+        </h1>
+        <p class="hero-desc">
+          Hi, I'm LincolnAdura - I design and build automation systems, web solutions, and intelligent bots for businesses and organisations that want to operate smarter and scale faster. I specialize in Automation, Web Development, and Bot Development — and I take on any project that falls within or connects to these disciplines. If you have something in mind, let's talk.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View My Work →</a>
+          <a href="https://lincolnadura.netlify.app/#contact" target="_blank" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="portrait-frame">
+          <span class="portrait-quote-mark">"</span>
+          <div class="portrait-inner">
+            <img src="images/lincoln-hero.jpg" alt="Lincoln Adura, Automation and Web Developer" />
+          </div>
+        </div>
+        <div class="portrait-caption">
+          <div class="quote-line">Automation, Web, and Bot Developer, focused on building efficient digital systems that reduce manual work and improve how people operate.</div>
+          <div class="quote-name">— Lincoln Adura</div>
+        </div>
+      </div>
     </div>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">3+</div>
+        <div class="stat-num">11+</div>
         <div class="stat-label">Projects Live</div>
+      </div>
+       <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Articles Published</div>
       </div>
       <div class="stat">
         <div class="stat-num">3</div>
         <div class="stat-label">Specializations</div>
       </div>
       <div class="stat">
-        <div class="stat-num">1yr+</div>
+        <div class="stat-num">2yr+</div>
         <div class="stat-label">Experience</div>
       </div>
       <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Committed</div>
+        <div class="stat-num">24hr</div>
+        <div class="stat-label">Response Time</div>
       </div>
     </div>
   </section>
 
+    <!-- CREDENTIAL STRIP -->
+  <div class="credential-strip">
+    <div class="credential-item"><span class="cred-dot"></span><strong>Formal Python Training</strong> · Synent Internship · 2026</div>
+    <div class="credential-item"><span class="cred-dot"></span><strong>11 Live Projects</strong> · Netlify · Render · Railway · Vercel</div>
+    <div class="credential-item"><span class="cred-dot"></span><strong>Open Source</strong> · github.com/Fiercexontan</div>
+    <div class="credential-item"><span class="cred-dot"></span><strong>Available on</strong> Fiverr · Upwork · LinkedIn</div>
+  </div>
+  
   <!-- SERVICES -->
   <section id="services" class="services">
     <div class="sec-header">
@@ -1037,7 +1198,7 @@
       </div>
       <div class="project-card glass-card">
         <div class="project-meta">
-          <span class="project-num">PROJECT · 9</span>
+          <span class="project-num">PROJECT · 09</span>
           <span class="project-status"><span class="status-dot"></span>Live</span>
         </div>
         <h3>Flask Lead Tracker Web App</h3>
@@ -1065,6 +1226,22 @@
           <span class="ptag">Web Scraping</span>
         </div>
         <a href="https://github.com/Fiercexontan/web-scraper" target="_blank" class="project-link">View on GitHub →</a>
+      </div>
+
+      <div class="project-card glass-card">
+        <div class="project-meta">
+          <span class="project-num">PROJECT · 11</span>
+          <span class="project-status"><span class="status-dot"></span>Live</span>
+        </div>
+        <h3>GitDapps — Web3 Wallet Platform</h3>
+        <p>A production-grade Web3 crypto wallet platform with passwordless Sign-In-With-Ethereum auth, a multi-chain dashboard across five networks, live token and NFT data via Alchemy, real-time USD portfolio values, and an admin panel to track every connected wallet.</p>
+        <div class="project-tags">
+          <span class="ptag">Next.js</span>
+          <span class="ptag">TypeScript</span>
+          <span class="ptag">wagmi</span>
+          <span class="ptag">MongoDB Atlas</span>
+        </div>
+        <a href="https://github.com/Fiercexontan/gitdapps-support" target="_blank" class="project-link">View on GitHub →</a>
       </div>
 
    </div>
@@ -1125,6 +1302,16 @@
           <a href="https://www.linkedin.com/pulse/project-10-complete-automated-web-scraper-live-lincoln-adura-60q1f" target="_blank" class="read-link">Read →</a>
         </div>
       </div>
+
+      <div class="article-card glass-card">
+        <div class="article-cat">Web3</div>
+        <h3>Building GitDapps in Public — Shipping a Web3 Wallet Platform</h3>
+        <p>Notes from building GitDapps end-to-end: wallet connections, Sign-In-With-Ethereum auth, multi-chain balances, and the lessons that came with shipping a real Web3 product in public.</p>
+        <div class="article-footer">
+          <span class="coming-soon">Published</span>
+          <a href="https://www.linkedin.com/posts/lincoln-adura-9b41582a2_webdevelopment-buildinpublic-softwaredevelopment-activity-7473651537727111169-vWKj" target="_blank" class="read-link">Read →</a>
+        </div>
+      </div>
     </div>
   </section>
   
@@ -1151,6 +1338,7 @@
         <p>Whether you need a website, an automation system, a bot, or just want to explore what's possible — I'd love to hear from you. I always reply within 24 hours.</p>
         <div class="contact-actions">
           <a href="https://lincolnadura.netlify.app/#contact" target="_blank" class="btn-primary">Send Me a Message →</a>
+          <a href="https://calendly.com/lincolnadura97" target="_blank" class="btn-outline">📅 Book a Call</a>
           <a href="https://fiercexontan.github.io/payment-page" target="_blank" class="btn-outline">💳 Pay for Services</a>
           <a href="https://www.linkedin.com/in/lincoln-adura" target="_blank" class="btn-outline">LinkedIn</a>
           <a href="https://www.fiverr.com/lincolnbts" target="_blank" class="btn-outline">Hire Me on Fiverr</a>
@@ -1165,11 +1353,12 @@
       <span class="fl">LINCOLN</span>
       <span class="fr"> ADURA</span>
     </div>
-    <p>© 2026 · Automation · Web · Bots · Africa 🌍</p>
+    <p>© 2026 · Automation · Web · Bots</p>
     <div class="footer-links">
       <a href="https://github.com/Fiercexontan" target="_blank">GitHub</a>
       <a href="https://lincolnadura.netlify.app" target="_blank">Landing Page</a>
       <a href="https://www.linkedin.com/in/lincoln-adura" target="_blank">LinkedIn</a>
+      <a href="https://lead-tracker-z2si.onrender.com/" target="_blank">client inquiry form </a>
     </div>
   </footer>
 
@@ -1209,7 +1398,7 @@
 
     // SKILLS TRACKS
     const row1 = ['Python', 'JavaScript', 'HTML & CSS', 'n8n', 'Zapier', 'Make', 'Google Sheets API', 'Gmail SMTP', 'REST APIs'];
-    const row2 = ['GitHub', 'Netlify', 'Telegram API', 'WhatsApp API', 'PDF Generation', 'Web Scraping', 'Formspree', 'Airtable', 'VS Code'];
+    const row2 = ['Next.js', 'TypeScript', 'GitHub', 'Netlify', 'Vercel', 'Railway', 'Telegram API', 'WhatsApp API', 'Twilio', 'BeautifulSoup', 'SQLite', 'MongoDB', 'Web3 / wagmi'];
 
     function buildTrack(id, items) {
       const track = document.getElementById(id);
@@ -1241,6 +1430,80 @@
       card.style.transition = 'opacity 0.7s ease, transform 0.7s ease, border-color 0.4s, background 0.4s, box-shadow 0.4s';
       observer.observe(card);
     });
+
+    // AUTOMATION NETWORK BACKGROUND
+    // Signature element: a slow-drifting node/link graph, standing in for the
+    // automation workflows and integrations Lincoln builds, in place of a
+    // generic blurred gradient background.
+    (function () {
+      const canvas = document.getElementById('network-bg');
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let w, h, nodes = [];
+      const COLORS = ['99,179,237', '246,201,14', '79,209,197'];
+
+      function sizeCanvas() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function buildNodes() {
+        const count = Math.max(24, Math.min(60, Math.round((w * h) / 34000)));
+        nodes = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18,
+          r: Math.random() * 1.6 + 0.8,
+          c: COLORS[Math.floor(Math.random() * COLORS.length)]
+        }));
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, w, h);
+        const maxDist = Math.min(160, Math.max(110, w / 9));
+
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          if (!reduceMotion) {
+            a.x += a.vx; a.y += a.vy;
+            if (a.x < 0 || a.x > w) a.vx *= -1;
+            if (a.y < 0 || a.y > h) a.vy *= -1;
+          }
+          for (let j = i + 1; j < nodes.length; j++) {
+            const b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              const alpha = (1 - dist / maxDist) * 0.16;
+              ctx.strokeStyle = `rgba(${a.c},${alpha})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${n.c},0.55)`;
+          ctx.fill();
+        }
+        requestAnimationFrame(step);
+      }
+
+      sizeCanvas();
+      buildNodes();
+      requestAnimationFrame(step);
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => { sizeCanvas(); buildNodes(); }, 200);
+      });
+    })();
   </script>
 </body>
 </html>
