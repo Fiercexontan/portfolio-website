@@ -658,6 +658,187 @@
       opacity: 0.5;
     }
 
+    /* FEATURED PROJECT — spotlight case-study card */
+.featured-project {
+  max-width: 1140px;
+  margin: 0 auto 64px;
+  padding: 44px 44px 40px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(246,201,14,0.05), rgba(255,255,255,0.03));
+  border: 1px solid rgba(246,201,14,0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-project::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 0%, rgba(246,201,14,0.08), transparent 55%);
+  pointer-events: none;
+}
+
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(246,201,14,0.1);
+  border: 1px solid rgba(246,201,14,0.3);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 22px;
+}
+
+.featured-badge .status-dot { background: var(--gold); }
+
+.featured-project .project-num {
+  color: var(--gold);
+  margin-left: 6px;
+}
+
+.featured-project h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.featured-project > p.featured-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  max-width: 720px;
+  margin-bottom: 34px;
+  font-weight: 300;
+}
+
+.featured-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 30px;
+}
+
+.featured-col h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.featured-col.is-new h4 { color: var(--teal); }
+
+.new-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--bg);
+  background: var(--teal);
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.featured-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featured-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.87rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.featured-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+  margin-top: 7px;
+  opacity: 0.7;
+}
+
+.featured-col.is-new .featured-list li::before { background: var(--teal); }
+
+.featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.featured-tags .ptag {
+  background: rgba(246,201,14,0.06);
+  border-color: rgba(246,201,14,0.2);
+  color: var(--gold);
+}
+
+.featured-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold), #d69e00);
+  color: #1a1400;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s;
+  box-shadow: 0 0 30px rgba(246,201,14,0.2);
+}
+
+.featured-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 34px rgba(246,201,14,0.35);
+}
+
+.more-projects-label {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+@media (max-width: 760px) {
+  .featured-project { padding: 32px 24px 28px; }
+  .featured-body { grid-template-columns: 1fr; gap: 26px; }
+  .featured-footer { flex-direction: column; align-items: flex-start; }
+  .featured-cta { width: 100%; justify-content: center; }
+}
+    
     /* PROJECTS */
     .projects { padding: 110px 40px; }
 
@@ -982,11 +1163,11 @@
     </div>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">11+</div>
+        <div class="stat-num">12+</div>
         <div class="stat-label">Projects Live</div>
       </div>
        <div class="stat">
-        <div class="stat-num">6</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Articles Published</div>
       </div>
       <div class="stat">
@@ -1007,7 +1188,7 @@
     <!-- CREDENTIAL STRIP -->
   <div class="credential-strip">
     <div class="credential-item"><span class="cred-dot"></span><strong>Formal Python Training</strong> · Synent Internship · 2026</div>
-    <div class="credential-item"><span class="cred-dot"></span><strong>11 Live Projects</strong> · Netlify · Render · Railway · Vercel</div>
+    <div class="credential-item"><span class="cred-dot"></span><strong>12 Live Projects</strong> · Netlify · Render · Railway · Vercel</div>
     <div class="credential-item"><span class="cred-dot"></span><strong>Open Source</strong> · github.com/Fiercexontan</div>
     <div class="credential-item"><span class="cred-dot"></span><strong>Available on</strong> Fiverr · Upwork · LinkedIn</div>
   </div>
@@ -1070,6 +1251,49 @@
     </div>
   </section>
 
+  <!-- FEATURED PROJECT -->
+<div class="featured-project glass-card">
+  <span class="featured-badge"><span class="status-dot"></span>Featured Project<span class="project-num">· 12</span></span>
+  <h3>Taste Haven — AI Voice Receptionist</h3>
+  <p class="featured-intro">Designed and built an AI-powered voice receptionist that automates appointment and reservation management for businesses. Proven end-to-end on a restaurant booking flow for a fictional client, Taste Haven — the AI answers the call, checks live calendar availability, books or declines the table in real time, and never tells a caller "confirmed" unless it actually is. The same engineering pattern adapts directly to clinics, salons, and any appointment-based business.</p>
+
+  <div class="featured-body">
+    <div class="featured-col">
+      <h4>Core Capabilities</h4>
+      <ul class="featured-list">
+        <li>AI-powered voice conversations using Vapi</li>
+        <li>Real-time availability checking with Google Calendar</li>
+        <li>Automatic reservation creation</li>
+        <li>Automatic email confirmations</li>
+        <li>Smart handling of unavailable booking slots with alternative suggestions</li>
+      </ul>
+    </div>
+    <div class="featured-col is-new">
+      <h4>Version 1.1 Improvements <span class="new-tag">NEW</span></h4>
+      <ul class="featured-list">
+        <li>Automatic logging of every booking attempt into Google Sheets</li>
+        <li>Automatic hourly cleanup of expired reservations</li>
+        <li>End-to-end workflow automation using n8n and Google Workspace</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="featured-footer">
+    <div class="featured-tags">
+      <span class="ptag">n8n</span>
+      <span class="ptag">Vapi</span>
+      <span class="ptag">Google Calendar</span>
+      <span class="ptag">Google Sheets</span>
+      <span class="ptag">Gmail</span>
+      <span class="ptag">Workflow Automation</span>
+      <span class="ptag">AI Automation</span>
+    </div>
+    <a href="https://github.com/Fiercexontan/taste-haven-ai-receptionist" target="_blank" class="featured-cta">View Case Study →</a>
+  </div>
+</div>
+
+<div class="more-projects-label">More Projects</div>
+  
   <!-- PROJECTS -->
   <section id="projects" class="projects">
     <div class="sec-header">
@@ -1397,7 +1621,7 @@
     });
 
     // SKILLS TRACKS
-    const row1 = ['Python', 'JavaScript', 'HTML & CSS', 'n8n', 'Zapier', 'Make', 'Google Sheets API', 'Gmail SMTP', 'REST APIs'];
+    const row1 = ['Python', 'JavaScript', 'HTML & CSS', 'n8n', 'Zapier', 'Make', 'Vapi', 'Voice AI', 'Google Sheets API', 'Gmail SMTP', 'REST APIs'];
     const row2 = ['Next.js', 'TypeScript', 'GitHub', 'Netlify', 'Vercel', 'Railway', 'Telegram API', 'WhatsApp API', 'Twilio', 'BeautifulSoup', 'SQLite', 'MongoDB', 'Web3 / wagmi'];
 
     function buildTrack(id, items) {
